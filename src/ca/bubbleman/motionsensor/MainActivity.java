@@ -18,16 +18,16 @@ public class MainActivity extends Activity {
 	TextView show;
 	TextView values;
 	LineGraphView graph;
-	
-	
+
+
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.activity_main);
-		
+
 		show = new TextView(getApplicationContext());
 		values = new TextView(getApplicationContext());
-		
+
 		LinearLayout l = (LinearLayout)findViewById(R.id.main_activity);
         l.setOrientation(LinearLayout.VERTICAL);
         
@@ -37,17 +37,17 @@ public class MainActivity extends Activity {
         graph = new LineGraphView(getApplicationContext(), 100, Arrays.asList("x", "y", "z"));
         graph.setVisibility(View.VISIBLE);
         l.addView(graph);
-		
+
 //		SensorManager sensorManager = (SensorManager) getSystemService (SENSOR_SERVICE);
 //		Sensor proximitySensor = sensorManager.getDefaultSensor(Sensor.TYPE_PROXIMITY);
 //		SensorEventListener listen = new ProximitySensorEventListener();
 //		sensorManager.registerListener(listen, proximitySensor, SensorManager.SENSOR_DELAY_NORMAL);
-		
+
 		SensorManager gyroManager = (SensorManager) getSystemService (SENSOR_SERVICE);
 		Sensor gyroSensor = gyroManager.getDefaultSensor(Sensor.TYPE_GYROSCOPE);
 		SensorEventListener gyroListen = new GyroSensorEventListener(show, values, graph);
-		gyroManager.registerListener(gyroListen, gyroSensor, SensorManager.SENSOR_DELAY_FASTEST);
-		
+		gyroManager.registerListener(gyroListen, gyroSensor, SensorManager.SENSOR_DELAY_GAME);
+
 	}
 
 	@Override
